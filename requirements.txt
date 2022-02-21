@@ -1,0 +1,10 @@
+asgiref==3.5.0
+click==8.0.4
+colorama==0.4.4
+Django==4.0.2
+Flask==2.0.3
+itsdangerous==2.1.0
+Jinja2==3.0.3
+MarkupSafe==2.1.0
+tzdata==2021.5
+Werkzeug==2.0.3

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static  %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="welcome">
+        <h1 style="margin-left: 30px;">Hello{{current_user.first_name}}! Make a wish </h1>
+        <a style="font-size: 25px;font-weight: 600;margin-right: 30px;" href="/clear">Log out</a>
+    </div>
+
+    <div style="border: 2px solid black;
+    height: 400px;width: 600px;
+    padding-top: 50px;margin-left: 50px;padding-left: 60px;" class="new_wish">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/process_new_wish" method="post">
+            {% csrf_token %}
+            <p><label style="margin-left: 20px;" for="">I wish for:</label>
+                <input style="margin-bottom: 40px;margin-left: 20px;" type="text" name="new_item"></p>
+
+
+            <p><label style="margin-left: 20px;" for="">Description:</label><br>
+                <textarea style="margin-left: 20px;" name="new_desc" id="" cols="30" rows="10"></textarea></p>
+            <a style="margin-left: 20px;padding: 5px;" href="/wishes">Cancel</a>
+            <button style="margin-left: 20px;padding: 5px;" type="submit" name="edit">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

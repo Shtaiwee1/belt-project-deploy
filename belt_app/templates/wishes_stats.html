@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static  %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div style="display: flex;justify-content: center;" class="welcome">
+        <h1 style="margin-left: 30px;margin-right: 100px;">Hello {{current_user.first_name}}! These are your stats!
+        </h1>
+        <div>
+            <a style="font-size: 25px;font-weight: 600;margin-right: 30px;" href="/clear">Log out</a>
+            <a style="font-size: 25px;font-weight: 600;margin-right: 30px;" href="/wishes">Dashboard</a>
+        </div>
+    </div>
+    <h2 style="margin-left: 391px;">Total wishes granted so far for all users:</h2>
+    <p style="margin-left: 391px;">Your granted wishes</p>
+    <p style="margin-left: 391px;">Your pending wishes</p>
+</body>
+
+</html>

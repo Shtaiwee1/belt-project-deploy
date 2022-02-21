@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static  %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="welcome">
+        <h1 style="margin-left: 30px;">Hello {{current_user.first_name}} </h1>
+        <div style="display: flex;" class="nav">
+            <a style="font-size: 25px;font-weight: 600;margin-right: 30px;" href="/clear">Log out</a>
+            <a class="view_stats" href="wishes/stats">View stats</a>
+            <a class="make_wish" style="" href="wishes/new">Make a
+                wish</a>
+        </div>
+    </div>
+
+    <div class="wish_list">
+
+        <h2>Your wish list:</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for wish in all_wishes%}
+            <tr>
+                <td>{{wish.item}}</td>
+                <td>{{wish.created_at}}</td>
+                <td><a href="/remove_wish/{{wish.id}}">Remove</a>|<a href="/wishes/edit/{{wish.id}}">Edit</a>|<a
+                        href="/wishes/stats">Granted</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="granted_list">
+        <h2>Granted wishes:</h2>
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Wisher</th>
+                <th>Date Added</th>
+                <th>Date Granted</th>
+                <th>Likes</th>
+                <th>Actions</th>
+            </tr>
+
+            {% for wish in all_wishes%}
+            <tr>
+                <td>{{wish.item}}</td>
+                <td>{{wish.user.first_name}}</td>
+                <td>{{wish.created_at}}</td>
+                <td>{{wish.updated_at}}</td>
+                <td>{{wish.users_who_like.all}}</td>
+                <td><a href="">Like</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>
